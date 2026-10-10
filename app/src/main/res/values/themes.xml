@@ -1,0 +1,24 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme with Dark OTT Styling -->
+    <style name="Base.Theme.Gluedin" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/ott_accent_red</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorSecondary">@color/ott_accent_cyan</item>
+        <item name="android:windowBackground">@color/ott_background</item>
+        <item name="android:statusBarColor">@color/ott_background</item>
+        <item name="android:navigationBarColor">@color/ott_background</item>
+    </style>
+
+    <style name="Theme.Gluedin" parent="Base.Theme.Gluedin" />
+
+    <!-- Style for Metadata Badge Pills (e.g. U/A 16+, HD, 4K) -->
+    <style name="OttBadgePill">
+        <item name="android:textSize">11sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/text_primary</item>
+        <item name="android:paddingStart">8dp</item>
+        <item name="android:paddingEnd">8dp</item>
+        <item name="android:paddingTop">3dp</item>
+        <item name="android:paddingBottom">3dp</item>
+    </style>
+</resources>
