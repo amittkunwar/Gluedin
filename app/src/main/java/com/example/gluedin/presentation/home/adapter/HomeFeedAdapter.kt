@@ -14,13 +14,6 @@ import com.example.gluedin.domain.model.ContentRail
 import com.example.gluedin.domain.model.HeroBanner
 import com.example.gluedin.domain.model.HomeFeed
 
-/**
- * Heterogeneous RecyclerView Adapter representing the OTT Home Feed:
- * ViewType 0: Hero Banner (Featured content with CTA)
- * ViewType 1: Content Rail (Horizontal row with title)
- *
- * Demonstrates advanced RecyclerView architecture using SharedViewPool and ListAdapter.
- */
 sealed interface HomeFeedSection {
     data class Hero(val banner: HeroBanner) : HomeFeedSection
     data class Rail(val rail: ContentRail) : HomeFeedSection
@@ -32,7 +25,6 @@ class HomeFeedAdapter(
     private val onHeroDetailsClick: (HeroBanner) -> Unit
 ) : ListAdapter<HomeFeedSection, RecyclerView.ViewHolder>(DiffCallback) {
 
-    // Shared ViewPool across all horizontal rails to optimize memory and scrolling performance
     private val sharedViewPool = RecyclerView.RecycledViewPool()
 
     override fun getItemViewType(position: Int): Int {
@@ -64,9 +56,6 @@ class HomeFeedAdapter(
         }
     }
 
-    /**
-     * Helper to set full home feed (Hero + Rails)
-     */
     fun submitHomeFeed(feed: HomeFeed) {
         val sections = mutableListOf<HomeFeedSection>()
         if (feed.heroBanner.id.isNotEmpty()) {
@@ -92,6 +81,8 @@ class HomeFeedAdapter(
 
             binding.ivHeroBanner.load(hero.bannerUrl) {
                 crossfade(true)
+                placeholder(com.example.gluedin.R.drawable.bg_card_placeholder)
+                error(com.example.gluedin.R.drawable.bg_card_placeholder)
             }
 
             binding.btnHeroPlay.setOnClickListener {

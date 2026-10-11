@@ -9,14 +9,6 @@ import com.example.gluedin.domain.model.ContentRail
 import com.example.gluedin.domain.model.HeroBanner
 import com.example.gluedin.domain.model.HomeFeed
 
-/**
- * Mapper functions to convert Data Transfer Objects (DTOs) into Domain models.
- * This ensures that:
- * 1. Missing or null values from an API have safe defaults provided here.
- * 2. If the API changes property names or types, only this Mapper changes, protecting
- *    the Domain and Presentation layers from breaking.
- */
-
 fun HomeFeedResponseDto.toDomain(): HomeFeed {
     return HomeFeed(
         heroBanner = heroBanner?.toDomain() ?: HeroBanner(

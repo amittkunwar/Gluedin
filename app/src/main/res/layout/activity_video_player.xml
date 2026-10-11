@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black">
+
+    <androidx.media3.ui.PlayerView
+        android:id="@+id/playerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:keepScreenOn="true"
+        app:auto_show="true"
+        app:controller_layout_id="@layout/custom_player_control_view"
+        app:resize_mode="fit"
+        app:show_buffering="always"
+        app:show_timeout="4000"
+        app:surface_type="surface_view"
+        app:use_controller="true" />
+
+    <ProgressBar
+        android:id="@+id/bufferingProgress"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:indeterminateTint="@color/ott_accent_red"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="visible" />
+
+    <!-- Top overlay: glass back button + title over a soft scrim -->
+    <LinearLayout
+        android:id="@+id/topBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/gradient_scrim_top"
+        android:elevation="6dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingHorizontal="16dp"
+        android:paddingTop="12dp"
+        android:paddingBottom="32dp"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageButton
+            android:id="@+id/btnPlayerBack"
+            android:layout_width="44dp"
+            android:layout_height="44dp"
+            android:background="@drawable/bg_glass_circle"
+            android:contentDescription="Back"
+            android:foreground="?android:attr/selectableItemBackgroundBorderless"
+            android:src="@drawable/ic_arrow_back"
+            app:tint="@color/white" />
+
+        <TextView
+            android:id="@+id/tvPlayerTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="14dp"
+            android:layout_weight="1"
+            android:ellipsize="end"
+            android:fontFamily="sans-serif-medium"
+            android:maxLines="1"
+            android:textColor="@color/white"
+            android:textSize="17sp"
+            android:textStyle="bold"
+            tools:text="Tears of Steel" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tvLiveEventBadge"
+        style="@style/OttBadgePill"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginBottom="96dp"
+        android:background="@drawable/bg_badge_pill"
+        android:elevation="6dp"
+        android:textColor="@color/ott_accent_cyan"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:text="EVENT: PLAYER_STARTED" />
+
+    <LinearLayout
+        android:id="@+id/errorContainer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:paddingHorizontal="32dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:background="@drawable/bg_glass_circle"
+            android:contentDescription="@null"
+            android:padding="18dp"
+            android:src="@drawable/ic_error_outline"
+            app:tint="@color/ott_accent_red" />
+
+        <TextView
+            android:id="@+id/tvPlayerError"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:lineSpacingExtra="4dp"
+            android:paddingVertical="16dp"
+            android:textColor="@color/white"
+            android:textSize="15sp"
+            tools:text="An error occurred during playback." />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnRetryPlayback"
+            android:layout_width="wrap_content"
+            android:layout_height="46dp"
+            android:backgroundTint="@color/ott_accent_red"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:paddingHorizontal="28dp"
+            android:text="Retry Playback"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            app:cornerRadius="23dp" />
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

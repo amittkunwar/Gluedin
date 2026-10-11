@@ -1,28 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Core Brand & Background Colors -->
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="ott_background">#0E1117</color>
-    <color name="ott_surface">#1A1F2C</color>
-    <color name="ott_card_background">#242B3D</color>
-    <color name="ott_card_stroke">#333D54</color>
-
-    <!-- Accent Colors (Cinematic Red & Vibrant Cyan) -->
-    <color name="ott_accent_red">#E50914</color>
-    <color name="ott_accent_red_hover">#B80710</color>
-    <color name="ott_accent_cyan">#00E5FF</color>
-    <color name="ott_accent_amber">#FFB800</color>
-
-    <!-- Text Colors -->
-    <color name="text_primary">#F8FAFC</color>
-    <color name="text_secondary">#94A3B8</color>
-    <color name="text_muted">#64748B</color>
-
-    <!-- Overlay Gradients -->
-    <color name="overlay_scrim_start">#CC000000</color>
-    <color name="overlay_scrim_end">#00000000</color>
-    <color name="hero_gradient_bottom">#FF0E1117</color>
-    <color name="hero_gradient_mid">#990E1117</color>
-    <color name="hero_gradient_top">#000E1117</color>
+    <color name="ott_background">#0A0A12</color>
+    <color name="ott_surface">#14141F</color>
+    <color name="ott_card_background">#1B1B2A</color>
+    <color name="ott_accent_red">#FF4D6D</color>
+    <color name="ott_accent_cyan">#5CF2D6</color>
+    <color name="ott_accent_violet">#8B6CFF</color>
+    <color name="ott_stroke">#1FFFFFFF</color>
+    <color name="text_primary">#F7F7FB</color>
+    <color name="text_secondary">#A6A6BC</color>
 </resources>

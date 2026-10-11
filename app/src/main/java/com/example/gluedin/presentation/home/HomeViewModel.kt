@@ -10,14 +10,6 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
-/**
- * ViewModel for the OTT Home Screen.
- *
- * Responsibilities:
- * 1. Invokes [GetHomeFeedUseCase] to retrieve home feed content.
- * 2. Emits state via [StateFlow] adhering to Unidirectional Data Flow (UDF).
- * 3. Survives Android configuration changes (screen rotations, splits).
- */
 class HomeViewModel(
     private val getHomeFeedUseCase: GetHomeFeedUseCase
 ) : ViewModel() {
@@ -29,9 +21,6 @@ class HomeViewModel(
         loadHomeFeed()
     }
 
-    /**
-     * Fetches the home feed data, transitioning through Loading -> Success/Error/Empty states.
-     */
     fun loadHomeFeed() {
         viewModelScope.launch {
             _uiState.value = UiState.Loading

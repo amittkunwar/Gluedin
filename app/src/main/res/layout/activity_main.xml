@@ -6,41 +6,75 @@
     android:layout_height="match_parent"
     android:background="@color/ott_background">
 
-    <!-- Top App Bar / Brand Header -->
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="@color/ott_background"
-        android:elevation="4dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:letterSpacing="0.08"
-            android:text="GLUEDIN"
-            android:textColor="@color/ott_accent_red"
-            android:textSize="22sp"
-            android:textStyle="bold" />
-    </androidx.appcompat.widget.Toolbar>
-
-    <!-- Main Content Recycler (Nested Rails + Hero Banner) -->
+    <!-- Feed runs edge to edge so the hero banner sits under the header -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvHomeFeed"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:clipToPadding="false"
-        android:paddingBottom="24dp"
+        android:overScrollMode="never"
+        android:paddingBottom="40dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar"
+        app:layout_constraintTop_toTopOf="parent"
         tools:listitem="@layout/item_content_rail" />
 
-    <!-- Loading State: Spinner & Message -->
+    <!-- Floating transparent header with top scrim -->
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@drawable/gradient_scrim_top"
+        android:elevation="0dp"
+        app:contentInsetStart="0dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingHorizontal="20dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-black"
+                android:letterSpacing="0.16"
+                android:text="GLUEDIN"
+                android:textColor="@color/text_primary"
+                android:textSize="20sp" />
+
+            <View
+                android:layout_width="6dp"
+                android:layout_height="6dp"
+                android:layout_marginStart="4dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/bg_dot" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
+            <TextView
+                style="@style/OttBadgePill"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_badge_pill"
+                android:drawableStart="@drawable/bg_dot"
+                android:drawablePadding="6dp"
+                android:letterSpacing="0.1"
+                android:text="OTT LIVE"
+                android:textColor="@color/text_primary"
+                android:textSize="10sp" />
+        </LinearLayout>
+    </androidx.appcompat.widget.Toolbar>
+
+    <!-- Loading -->
     <LinearLayout
         android:id="@+id/viewLoading"
         android:layout_width="wrap_content"
@@ -55,25 +89,26 @@
         tools:visibility="visible">
 
         <ProgressBar
-            android:layout_width="48dp"
-            android:layout_height="48dp"
+            android:layout_width="44dp"
+            android:layout_height="44dp"
             android:indeterminateTint="@color/ott_accent_red" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:text="Loading movies &amp; shows..."
+            android:layout_marginTop="18dp"
+            android:letterSpacing="0.03"
+            android:text="Curating entertainment for you…"
             android:textColor="@color/text_secondary"
             android:textSize="14sp" />
     </LinearLayout>
 
-    <!-- Error State: Message & Retry CTA -->
+    <!-- Error -->
     <LinearLayout
         android:id="@+id/viewError"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="32dp"
+        android:layout_marginHorizontal="40dp"
         android:gravity="center"
         android:orientation="vertical"
         android:visibility="gone"
@@ -82,28 +117,51 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
+        <ImageView
+            android:layout_width="72dp"
+            android:layout_height="72dp"
+            android:background="@drawable/bg_glass_circle"
+            android:contentDescription="@null"
+            android:padding="20dp"
+            android:src="@drawable/ic_error_outline"
+            app:tint="@color/ott_accent_red" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="Signal lost"
+            android:textColor="@color/text_primary"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
         <TextView
             android:id="@+id/tvErrorMessage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
             android:gravity="center"
+            android:lineSpacingExtra="4dp"
             android:textColor="@color/text_secondary"
-            android:textSize="15sp"
+            android:textSize="14sp"
             tools:text="Failed to load content. Please check your internet connection." />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnRetry"
             android:layout_width="wrap_content"
-            android:layout_height="44dp"
-            android:layout_marginTop="16dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="24dp"
             android:backgroundTint="@color/ott_accent_red"
-            android:text="Retry"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:paddingHorizontal="28dp"
+            android:text="Try again"
             android:textColor="@color/white"
             android:textStyle="bold"
-            app:cornerRadius="6dp" />
+            app:cornerRadius="24dp" />
     </LinearLayout>
 
-    <!-- Empty State: Message -->
+    <!-- Empty -->
     <LinearLayout
         android:id="@+id/viewEmpty"
         android:layout_width="wrap_content"
@@ -116,12 +174,22 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
+        <ImageView
+            android:layout_width="72dp"
+            android:layout_height="72dp"
+            android:background="@drawable/bg_glass_circle"
+            android:contentDescription="@null"
+            android:padding="20dp"
+            android:src="@drawable/ic_info_outline"
+            app:tint="@color/text_secondary" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
             android:text="No content available right now."
             android:textColor="@color/text_secondary"
-            android:textSize="15sp" />
+            android:textSize="14sp" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

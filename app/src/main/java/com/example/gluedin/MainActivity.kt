@@ -19,15 +19,6 @@ import com.example.gluedin.presentation.home.HomeViewModel
 import com.example.gluedin.presentation.home.adapter.HomeFeedAdapter
 import kotlinx.coroutines.launch
 
-/**
- * MainActivity: The OTT Home Screen.
- *
- * Demonstrates:
- * 1. ViewBinding null-safety.
- * 2. Unidirectional Data Flow observing StateFlow via repeatOnLifecycle(STARTED).
- * 3. Handling Loading, Success, Error, and Empty states cleanly.
- * 4. User navigation to Detail and Player screens.
- */
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
@@ -110,12 +101,12 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun navigateToDetail(item: ContentItem) {
-        // Will launch DetailActivity in Phase 6
-        Toast.makeText(this, "Opening details for: ${item.title}", Toast.LENGTH_SHORT).show()
+        val intent = com.example.gluedin.presentation.detail.DetailActivity.createIntent(this, item)
+        startActivity(intent)
     }
 
     private fun navigateToPlayer(item: ContentItem) {
-        // Will launch PlayerActivity in Phase 7
-        Toast.makeText(this, "Launching player for: ${item.title}", Toast.LENGTH_SHORT).show()
+        val intent = com.example.gluedin.presentation.player.PlayerActivity.createIntent(this, item)
+        startActivity(intent)
     }
 }

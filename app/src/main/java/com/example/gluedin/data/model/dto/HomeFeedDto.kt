@@ -2,7 +2,6 @@ package com.example.gluedin.data.model.dto
 
 import com.google.gson.annotations.SerializedName
 
-
 data class HomeFeedResponseDto(
     @SerializedName("heroBanner")
     val heroBanner: HeroBannerDto?,

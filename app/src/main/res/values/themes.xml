@@ -13,12 +13,14 @@
 
     <!-- Style for Metadata Badge Pills (e.g. U/A 16+, HD, 4K) -->
     <style name="OttBadgePill">
+        <item name="android:paddingStart">10dp</item>
+        <item name="android:paddingEnd">10dp</item>
+        <item name="android:paddingTop">4dp</item>
+        <item name="android:paddingBottom">4dp</item>
+        <item name="android:textColor">@color/text_primary</item>
         <item name="android:textSize">11sp</item>
         <item name="android:textStyle">bold</item>
-        <item name="android:textColor">@color/text_primary</item>
-        <item name="android:paddingStart">8dp</item>
-        <item name="android:paddingEnd">8dp</item>
-        <item name="android:paddingTop">3dp</item>
-        <item name="android:paddingBottom">3dp</item>
+        <item name="android:letterSpacing">0.03</item>
+        <item name="android:maxLines">1</item>
     </style>
 </resources>

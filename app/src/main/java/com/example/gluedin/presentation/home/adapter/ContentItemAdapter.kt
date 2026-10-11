@@ -9,10 +9,6 @@ import coil.load
 import com.example.gluedin.databinding.ItemContentCardBinding
 import com.example.gluedin.domain.model.ContentItem
 
-/**
- * Adapter for the horizontally scrolling items inside a Content Rail.
- * Uses [ListAdapter] with [DiffUtil] for optimal rendering and payload calculations.
- */
 class ContentItemAdapter(
     private val onItemClick: (ContentItem) -> Unit
 ) : ListAdapter<ContentItem, ContentItemAdapter.ContentItemViewHolder>(DiffCallback) {
@@ -40,9 +36,10 @@ class ContentItemAdapter(
             binding.tvCategory.text = "${item.category} • ${item.releaseYear}"
             binding.tvBadge.text = item.rating
 
-            // Load poster image with Coil
             binding.ivThumbnail.load(item.thumbnailUrl) {
                 crossfade(true)
+                placeholder(com.example.gluedin.R.drawable.bg_card_placeholder)
+                error(com.example.gluedin.R.drawable.bg_card_placeholder)
             }
 
             binding.root.setOnClickListener {
